@@ -1,27 +1,33 @@
-# Generátor náhodných hesel
+<p align="center">
+  <img src="Random password generator/Assets/icon.png" alt="KeyForge logo" width="120" height="120">
+</p>
 
-Desktopová aplikace v .NET / Avalonia pro generování náhodných hesel. Běží nativně na Windows, Linuxu i macOS.
+<h1 align="center">KeyForge</h1>
+
+<p align="center">Desktopová aplikace v .NET / Avalonia pro generování náhodných hesel. Běží nativně na Windows, Linuxu i macOS.</p>
 
 ## Stažení
 
-Nejnovější verzi ke stažení najdeš na stránce [Releases](https://github.com/Sodicek/Random-password-generator/releases/latest). Jde o samostatně spustitelné balíčky — .NET SDK není potřeba, stačí stáhnout, rozbalit a spustit:
+Nejnovější verzi ke stažení najdeš na stránce [Releases](https://github.com/Sodicek/KeyForge/releases/latest). Jde o samostatně spustitelné balíčky — .NET SDK není potřeba, stačí stáhnout, rozbalit a spustit:
 
 | Platforma | Soubor |
 |---|---|
-| Windows (x64) | [RandomPasswordGenerator-win-x64.zip](https://github.com/Sodicek/Random-password-generator/releases/latest/download/RandomPasswordGenerator-win-x64.zip) |
-| Linux (x64) | [RandomPasswordGenerator-linux-x64.tar.gz](https://github.com/Sodicek/Random-password-generator/releases/latest/download/RandomPasswordGenerator-linux-x64.tar.gz) |
-| macOS (Intel) | [RandomPasswordGenerator-osx-x64.tar.gz](https://github.com/Sodicek/Random-password-generator/releases/latest/download/RandomPasswordGenerator-osx-x64.tar.gz) |
-| macOS (Apple Silicon) | [RandomPasswordGenerator-osx-arm64.tar.gz](https://github.com/Sodicek/Random-password-generator/releases/latest/download/RandomPasswordGenerator-osx-arm64.tar.gz) |
+| Windows (x64) | [KeyForge-win-x64.zip](https://github.com/Sodicek/KeyForge/releases/latest/download/KeyForge-win-x64.zip) |
+| Linux (x64) | [KeyForge-linux-x64.tar.gz](https://github.com/Sodicek/KeyForge/releases/latest/download/KeyForge-linux-x64.tar.gz) |
+| macOS (Intel) | [KeyForge-osx-x64.tar.gz](https://github.com/Sodicek/KeyForge/releases/latest/download/KeyForge-osx-x64.tar.gz) |
+| macOS (Apple Silicon) | [KeyForge-osx-arm64.tar.gz](https://github.com/Sodicek/KeyForge/releases/latest/download/KeyForge-osx-arm64.tar.gz) |
 
-Na Linuxu/macOS je po rozbalení potřeba nastavit spustitelné právo: `chmod +x "Random password generator"`.
+Na Linuxu/macOS je po rozbalení potřeba nastavit spustitelné právo: `chmod +x KeyForge`.
 
 ## Funkce
 
 - Volitelná délka hesla (posuvník)
 - Volitelné zahrnutí velkých písmen, čísel a speciálních znaků
+- Volitelné vyloučení matoucích znaků (0/O, 1/l/I)
 - Vygenerované heslo vždy obsahuje alespoň jeden znak z každé zvolené kategorie
+- Ukazatel síly hesla (entropie v bitech)
 - Kryptograficky bezpečný generátor náhodných čísel (`RandomNumberGenerator`)
-- Kopírování hesla do schránky jedním kliknutím
+- Kopírování hesla do schránky jedním kliknutím, se automatickým smazáním schránky po 30 s
 - Volitelné uložení hesla do souboru `password.txt` na ploše (nebo do její podsložky)
 - Přepínání jazyka za běhu — čeština (výchozí) a angličtina
 

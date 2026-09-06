@@ -4,6 +4,7 @@
         x:Class="Random_password_generator.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Title="{Binding Title}"
+        Icon="avares://KeyForge/Assets/icon.ico"
         Width="420" Height="620"
         CanResize="False"
         WindowStartupLocation="CenterScreen">
@@ -14,7 +15,7 @@
 
     <StackPanel Margin="24" Spacing="16">
         <Grid ColumnDefinitions="*,Auto">
-            <TextBlock Grid.Column="0" Text="{Binding Title}" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" />
+            <TextBlock Grid.Column="0" Text="KeyForge" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" />
             <ComboBox Grid.Column="1" SelectedIndex="{Binding LanguageIndex}" Width="130">
                 <ComboBoxItem>Čeština</ComboBoxItem>
                 <ComboBoxItem>English</ComboBoxItem>
