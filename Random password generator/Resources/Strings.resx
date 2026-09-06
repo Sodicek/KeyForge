@@ -58,40 +58,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Prompt_Capitals" xml:space="preserve">
-    <value>Chcete zahrnout velká písmena? (A/N): </value>
+  <data name="App_Title" xml:space="preserve">
+    <value>Generátor hesel</value>
   </data>
-  <data name="Prompt_Special" xml:space="preserve">
-    <value>Chcete zahrnout speciální znaky? (A/N): </value>
+  <data name="Label_Capitals" xml:space="preserve">
+    <value>Velká písmena</value>
   </data>
-  <data name="Prompt_Numbers" xml:space="preserve">
-    <value>Chcete zahrnout čísla? (A/N): </value>
+  <data name="Label_Special" xml:space="preserve">
+    <value>Speciální znaky</value>
   </data>
-  <data name="Prompt_Length" xml:space="preserve">
-    <value>Zadejte délku hesla (minimálně {0} pro zvolené možnosti): </value>
+  <data name="Label_Numbers" xml:space="preserve">
+    <value>Čísla</value>
   </data>
-  <data name="Error_Length" xml:space="preserve">
-    <value>Zadejte prosím celé číslo alespoň {0}.</value>
+  <data name="Label_Length" xml:space="preserve">
+    <value>Délka hesla</value>
   </data>
-  <data name="Error_YesNo" xml:space="preserve">
-    <value>Odpovězte prosím A nebo N.</value>
+  <data name="Button_Generate" xml:space="preserve">
+    <value>Generovat</value>
   </data>
-  <data name="Result_Password" xml:space="preserve">
-    <value>Vaše heslo je: {0}</value>
+  <data name="Button_Copy" xml:space="preserve">
+    <value>Kopírovat</value>
   </data>
-  <data name="Prompt_Save" xml:space="preserve">
-    <value>Chcete heslo uložit na plochu? (A/N): </value>
+  <data name="Button_Save" xml:space="preserve">
+    <value>Uložit</value>
   </data>
-  <data name="Prompt_Directory" xml:space="preserve">
-    <value>Zadejte název složky, kam chcete heslo uložit (prázdné pro kořen plochy): </value>
+  <data name="Label_SaveToDesktop" xml:space="preserve">
+    <value>Uložit heslo na plochu</value>
   </data>
-  <data name="Error_Directory" xml:space="preserve">
-    <value>Neplatný název složky.</value>
+  <data name="Placeholder_Directory" xml:space="preserve">
+    <value>Název podsložky (nepovinné)</value>
   </data>
-  <data name="Info_Saved" xml:space="preserve">
+  <data name="Status_Copied" xml:space="preserve">
+    <value>Heslo zkopírováno do schránky.</value>
+  </data>
+  <data name="Status_Saved" xml:space="preserve">
     <value>Heslo uloženo do souboru: {0}</value>
   </data>
-  <data name="Error_Save" xml:space="preserve">
+  <data name="Status_SaveError" xml:space="preserve">
     <value>Chyba při ukládání hesla do souboru: {0}</value>
+  </data>
+  <data name="Status_InvalidDirectory" xml:space="preserve">
+    <value>Neplatný název složky.</value>
   </data>
 </root>

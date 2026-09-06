@@ -1,0 +1,58 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Random_password_generator.ViewModels"
+        x:Class="Random_password_generator.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Title="{Binding Title}"
+        Width="420" Height="540"
+        CanResize="False"
+        WindowStartupLocation="CenterScreen">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
+
+    <StackPanel Margin="24" Spacing="16">
+        <Grid ColumnDefinitions="*,Auto">
+            <TextBlock Grid.Column="0" Text="{Binding Title}" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" />
+            <ComboBox Grid.Column="1" SelectedIndex="{Binding LanguageIndex}" Width="130">
+                <ComboBoxItem>Čeština</ComboBoxItem>
+                <ComboBoxItem>English</ComboBoxItem>
+            </ComboBox>
+        </Grid>
+
+        <StackPanel Spacing="8">
+            <CheckBox Content="{Binding CapitalsLabel}" IsChecked="{Binding IncludeCapitals}" />
+            <CheckBox Content="{Binding SpecialLabel}" IsChecked="{Binding IncludeSpecial}" />
+            <CheckBox Content="{Binding NumbersLabel}" IsChecked="{Binding IncludeNumbers}" />
+        </StackPanel>
+
+        <StackPanel Spacing="4">
+            <Grid ColumnDefinitions="*,Auto">
+                <TextBlock Grid.Column="0" Text="{Binding LengthLabel}" />
+                <TextBlock Grid.Column="1" Text="{Binding Length, StringFormat={}{0:0}}" FontWeight="Bold" />
+            </Grid>
+            <Slider Minimum="{Binding MinLength}" Maximum="64" Value="{Binding Length}"
+                    TickFrequency="1" IsSnapToTickEnabled="True" />
+        </StackPanel>
+
+        <Button Content="{Binding GenerateLabel}" Command="{Binding GenerateCommand}"
+                HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" />
+
+        <Grid ColumnDefinitions="*,Auto">
+            <TextBox Grid.Column="0" Text="{Binding GeneratedPassword, Mode=OneWay}" IsReadOnly="True"
+                     FontFamily="Consolas,Menlo,monospace" VerticalContentAlignment="Center" />
+            <Button Grid.Column="1" Content="{Binding CopyLabel}" Click="OnCopyClick" Margin="8,0,0,0" />
+        </Grid>
+
+        <StackPanel Spacing="8">
+            <CheckBox Content="{Binding SaveToDesktopLabel}" IsChecked="{Binding SaveToDesktop}" />
+            <Grid ColumnDefinitions="*,Auto" IsVisible="{Binding SaveToDesktop}">
+                <TextBox Grid.Column="0" PlaceholderText="{Binding DirectoryPlaceholder}" Text="{Binding SaveFolderName}" />
+                <Button Grid.Column="1" Content="{Binding SaveLabel}" Command="{Binding SaveCommand}" Margin="8,0,0,0" />
+            </Grid>
+        </StackPanel>
+
+        <TextBlock Text="{Binding StatusMessage}" Foreground="Gray" TextWrapping="Wrap" />
+    </StackPanel>
+</Window>
