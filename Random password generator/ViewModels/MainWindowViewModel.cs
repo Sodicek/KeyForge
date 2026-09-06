@@ -91,13 +91,13 @@ public partial class MainWindowViewModel : ObservableObject
 
     public MainWindowViewModel()
     {
-        CultureInfo.CurrentUICulture = new CultureInfo("cs-CZ");
+        Strings.Culture = new CultureInfo("cs-CZ");
         Generate();
     }
 
     partial void OnLanguageIndexChanged(int value)
     {
-        CultureInfo.CurrentUICulture = value == 1 ? new CultureInfo("en-US") : new CultureInfo("cs-CZ");
+        Strings.Culture = value == 1 ? new CultureInfo("en-US") : new CultureInfo("cs-CZ");
         RefreshLocalizedText();
     }
 
