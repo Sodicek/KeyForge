@@ -100,4 +100,28 @@
   <data name="Status_InvalidDirectory" xml:space="preserve">
     <value>Neplatný název složky.</value>
   </data>
+  <data name="Label_ExcludeAmbiguous" xml:space="preserve">
+    <value>Vyloučit matoucí znaky (0/O, 1/l/I)</value>
+  </data>
+  <data name="Status_CopiedWithClear" xml:space="preserve">
+    <value>Heslo zkopírováno do schránky. Za 30 s se automaticky smaže.</value>
+  </data>
+  <data name="Label_Strength" xml:space="preserve">
+    <value>Síla hesla: {0} ({1:0} bitů)</value>
+  </data>
+  <data name="Strength_VeryWeak" xml:space="preserve">
+    <value>velmi slabé</value>
+  </data>
+  <data name="Strength_Weak" xml:space="preserve">
+    <value>slabé</value>
+  </data>
+  <data name="Strength_Medium" xml:space="preserve">
+    <value>střední</value>
+  </data>
+  <data name="Strength_Strong" xml:space="preserve">
+    <value>silné</value>
+  </data>
+  <data name="Strength_VeryStrong" xml:space="preserve">
+    <value>velmi silné</value>
+  </data>
 </root>

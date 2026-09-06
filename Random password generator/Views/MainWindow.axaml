@@ -4,7 +4,7 @@
         x:Class="Random_password_generator.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Title="{Binding Title}"
-        Width="420" Height="540"
+        Width="420" Height="620"
         CanResize="False"
         WindowStartupLocation="CenterScreen">
 
@@ -25,6 +25,7 @@
             <CheckBox Content="{Binding CapitalsLabel}" IsChecked="{Binding IncludeCapitals}" />
             <CheckBox Content="{Binding SpecialLabel}" IsChecked="{Binding IncludeSpecial}" />
             <CheckBox Content="{Binding NumbersLabel}" IsChecked="{Binding IncludeNumbers}" />
+            <CheckBox Content="{Binding ExcludeAmbiguousLabel}" IsChecked="{Binding ExcludeAmbiguous}" />
         </StackPanel>
 
         <StackPanel Spacing="4">
@@ -44,6 +45,12 @@
                      FontFamily="Consolas,Menlo,monospace" VerticalContentAlignment="Center" />
             <Button Grid.Column="1" Content="{Binding CopyLabel}" Click="OnCopyClick" Margin="8,0,0,0" />
         </Grid>
+
+        <StackPanel Spacing="4">
+            <ProgressBar Minimum="0" Maximum="100" Value="{Binding StrengthPercent}"
+                         Foreground="{Binding StrengthColor}" Height="6" />
+            <TextBlock Text="{Binding StrengthText}" Foreground="{Binding StrengthColor}" FontSize="12" />
+        </StackPanel>
 
         <StackPanel Spacing="8">
             <CheckBox Content="{Binding SaveToDesktopLabel}" IsChecked="{Binding SaveToDesktop}" />
