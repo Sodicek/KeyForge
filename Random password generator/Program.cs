@@ -7,10 +7,12 @@ class PasswordGenerator
 {
     static void Main(string[] args)
     {
-        int length = ReadPositiveInt("Enter the length of the password: ");
         bool includeCapitalLetters = ReadYesNo("Do you want to include capital letters? (Y/N): ");
         bool includeSpecialChars = ReadYesNo("Do you want to include special characters? (Y/N): ");
         bool includeNumbers = ReadYesNo("Do you want to include numbers? (Y/N): ");
+
+        int minLength = 1 + (includeCapitalLetters ? 1 : 0) + (includeSpecialChars ? 1 : 0) + (includeNumbers ? 1 : 0);
+        int length = ReadPositiveInt($"Enter the length of the password (minimum {minLength} for the selected options): ", minLength);
 
         string password = GeneratePassword(length, includeCapitalLetters, includeSpecialChars, includeNumbers);
         Console.WriteLine("Your password is: " + password);
@@ -25,19 +27,19 @@ class PasswordGenerator
         }
     }
 
-    static int ReadPositiveInt(string prompt)
+    static int ReadPositiveInt(string prompt, int minimum = 1)
     {
         while (true)
         {
             Console.Write(prompt);
             string? input = Console.ReadLine();
 
-            if (int.TryParse(input, out int value) && value > 0)
+            if (int.TryParse(input, out int value) && value >= minimum)
             {
                 return value;
             }
 
-            Console.WriteLine("Please enter a positive whole number.");
+            Console.WriteLine($"Please enter a whole number of at least {minimum}.");
         }
     }
 
@@ -69,33 +71,50 @@ class PasswordGenerator
         const string numbers = "1234567890";
         const string specialChars = "!@#$%^&*()_+-=[]{};:,.<>?";
 
-        StringBuilder sourceChars = new StringBuilder(letters);
+        var requiredCategories = new System.Collections.Generic.List<string> { letters };
 
         if (includeCapitalLetters)
         {
-            sourceChars.Append(capitalLetters);
+            requiredCategories.Add(capitalLetters);
         }
 
         if (includeSpecialChars)
         {
-            sourceChars.Append(specialChars);
+            requiredCategories.Add(specialChars);
         }
 
         if (includeNumbers)
         {
-            sourceChars.Append(numbers);
+            requiredCategories.Add(numbers);
         }
 
-        string charset = sourceChars.ToString();
-        StringBuilder password = new StringBuilder(length);
+        string charset = string.Concat(requiredCategories);
+        char[] password = new char[length];
 
-        for (int i = 0; i < length; i++)
+        // Guarantee at least one character from each selected category.
+        for (int i = 0; i < requiredCategories.Count; i++)
         {
-            int index = RandomNumberGenerator.GetInt32(charset.Length);
-            password.Append(charset[index]);
+            string category = requiredCategories[i];
+            password[i] = category[RandomNumberGenerator.GetInt32(category.Length)];
         }
 
-        return password.ToString();
+        for (int i = requiredCategories.Count; i < length; i++)
+        {
+            password[i] = charset[RandomNumberGenerator.GetInt32(charset.Length)];
+        }
+
+        Shuffle(password);
+
+        return new string(password);
+    }
+
+    static void Shuffle(char[] chars)
+    {
+        for (int i = chars.Length - 1; i > 0; i--)
+        {
+            int j = RandomNumberGenerator.GetInt32(i + 1);
+            (chars[i], chars[j]) = (chars[j], chars[i]);
+        }
     }
 
     static void SavePasswordToFile(string password, string? directoryName)
