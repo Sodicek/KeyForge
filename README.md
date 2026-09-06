@@ -2,6 +2,19 @@
 
 Desktopová aplikace v .NET / Avalonia pro generování náhodných hesel. Běží nativně na Windows, Linuxu i macOS.
 
+## Stažení
+
+Nejnovější verzi ke stažení najdeš na stránce [Releases](https://github.com/Sodicek/Random-password-generator/releases/latest). Jde o samostatně spustitelné balíčky — .NET SDK není potřeba, stačí stáhnout, rozbalit a spustit:
+
+| Platforma | Soubor |
+|---|---|
+| Windows (x64) | [RandomPasswordGenerator-win-x64.zip](https://github.com/Sodicek/Random-password-generator/releases/latest/download/RandomPasswordGenerator-win-x64.zip) |
+| Linux (x64) | [RandomPasswordGenerator-linux-x64.tar.gz](https://github.com/Sodicek/Random-password-generator/releases/latest/download/RandomPasswordGenerator-linux-x64.tar.gz) |
+| macOS (Intel) | [RandomPasswordGenerator-osx-x64.tar.gz](https://github.com/Sodicek/Random-password-generator/releases/latest/download/RandomPasswordGenerator-osx-x64.tar.gz) |
+| macOS (Apple Silicon) | [RandomPasswordGenerator-osx-arm64.tar.gz](https://github.com/Sodicek/Random-password-generator/releases/latest/download/RandomPasswordGenerator-osx-arm64.tar.gz) |
+
+Na Linuxu/macOS je po rozbalení potřeba nastavit spustitelné právo: `chmod +x "Random password generator"`.
+
 ## Funkce
 
 - Volitelná délka hesla (posuvník)
@@ -12,17 +25,21 @@ Desktopová aplikace v .NET / Avalonia pro generování náhodných hesel. Běž
 - Volitelné uložení hesla do souboru `password.txt` na ploše (nebo do její podsložky)
 - Přepínání jazyka za běhu — čeština (výchozí) a angličtina
 
-## Požadavky
+## Ovládání
+
+Zaškrtni požadované kategorie znaků, nastav délku posuvníkem a klikni na **Generovat**. Heslo lze zkopírovat do schránky nebo uložit do textového souboru na ploše — ten je čistý text, takže po použití soubor smaž, ať v něm heslo neleží zbytečně dlouho.
+
+## Spuštění ze zdrojového kódu
+
+Pro vývoj nebo pokud nechceš stažený balíček, jde appka spustit i přímo ze zdrojů.
+
+### Požadavky
 
 - [.NET 8 SDK](https://dotnet.microsoft.com/download) nebo novější
-
-## Spuštění
 
 ```bash
 dotnet run --project "Random password generator"
 ```
-
-Otevře se okno aplikace. Zaškrtni požadované kategorie znaků, nastav délku posuvníkem a klikni na **Generovat**. Heslo lze zkopírovat do schránky nebo uložit do textového souboru na ploše — ten je čistý text, takže po použití soubor smaž, ať v něm heslo neleží zbytečně dlouho.
 
 ## Build
 
