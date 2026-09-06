@@ -1,28 +1,34 @@
-# Random Password Generator
+# Generátor náhodných hesel
 
-A simple .NET console app that generates a random password based on your preferences.
+Jednoduchá konzolová aplikace v .NET, která vygeneruje náhodné heslo podle tvých preferencí.
 
-## Features
+## Funkce
 
-- Choose the password length
-- Optionally include capital letters, numbers, and special characters
-- Uses a cryptographically secure random number generator (`RandomNumberGenerator`)
-- Optionally save the generated password to a `password.txt` file on your Desktop (or a subfolder of it)
+- Volitelná délka hesla
+- Volitelné zahrnutí velkých písmen, čísel a speciálních znaků
+- Vygenerované heslo vždy obsahuje alespoň jeden znak z každé zvolené kategorie
+- Kryptograficky bezpečný generátor náhodných čísel (`RandomNumberGenerator`)
+- Volitelné uložení hesla do souboru `password.txt` na ploše (nebo do její podsložky)
+- Podpora dvou jazyků — čeština (výchozí) a angličtina
 
-## Requirements
+## Požadavky
 
-- [.NET 8 SDK](https://dotnet.microsoft.com/download) or newer
+- [.NET 8 SDK](https://dotnet.microsoft.com/download) nebo novější
 
-## Usage
+## Použití
 
 ```bash
 dotnet run --project "Random password generator"
 ```
 
-Follow the prompts to set the password length and character options. If you choose to save the password, it is written as plain text to `password.txt` — treat that file as sensitive and delete it once you no longer need it.
+Na začátku zvol jazyk a dále postupuj podle výzev pro délku hesla a zahrnuté znaky. Pokud si heslo necháš uložit, zapíše se jako čistý text do `password.txt` — po použití soubor smaž, ať v něm heslo neleží zbytečně dlouho.
 
 ## Build
 
 ```bash
 dotnet build
 ```
+
+## Lokalizace
+
+Texty aplikace jsou v `Resources/Strings.resx` (čeština, výchozí) a `Resources/Strings.en.resx` (angličtina). Nový jazyk lze přidat vytvořením dalšího `Strings.<kód_jazyka>.resx` se stejnými klíči.

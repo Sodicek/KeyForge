@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Prompt_Capitals" xml:space="preserve">
+    <value>Do you want to include capital letters? (Y/N): </value>
+  </data>
+  <data name="Prompt_Special" xml:space="preserve">
+    <value>Do you want to include special characters? (Y/N): </value>
+  </data>
+  <data name="Prompt_Numbers" xml:space="preserve">
+    <value>Do you want to include numbers? (Y/N): </value>
+  </data>
+  <data name="Prompt_Length" xml:space="preserve">
+    <value>Enter the length of the password (minimum {0} for the selected options): </value>
+  </data>
+  <data name="Error_Length" xml:space="preserve">
+    <value>Please enter a whole number of at least {0}.</value>
+  </data>
+  <data name="Error_YesNo" xml:space="preserve">
+    <value>Please answer with Y or N.</value>
+  </data>
+  <data name="Result_Password" xml:space="preserve">
+    <value>Your password is: {0}</value>
+  </data>
+  <data name="Prompt_Save" xml:space="preserve">
+    <value>Do you want to save the password to the desktop? (Y/N): </value>
+  </data>
+  <data name="Prompt_Directory" xml:space="preserve">
+    <value>Enter the directory name where you want to save the password file (leave empty for Desktop root): </value>
+  </data>
+  <data name="Error_Directory" xml:space="preserve">
+    <value>Invalid directory name.</value>
+  </data>
+  <data name="Info_Saved" xml:space="preserve">
+    <value>Password saved to file: {0}</value>
+  </data>
+  <data name="Error_Save" xml:space="preserve">
+    <value>Error saving password to file: {0}</value>
+  </data>
+</root>

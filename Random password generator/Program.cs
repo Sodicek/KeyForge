@@ -1,30 +1,48 @@
 using System;
+using System.Globalization;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
+using Random_password_generator.Resources;
 
 class PasswordGenerator
 {
     static void Main(string[] args)
     {
-        bool includeCapitalLetters = ReadYesNo("Do you want to include capital letters? (Y/N): ");
-        bool includeSpecialChars = ReadYesNo("Do you want to include special characters? (Y/N): ");
-        bool includeNumbers = ReadYesNo("Do you want to include numbers? (Y/N): ");
+        Console.OutputEncoding = Encoding.UTF8;
+        SelectLanguage();
+
+        bool includeCapitalLetters = ReadYesNo(Strings.Get("Prompt_Capitals"));
+        bool includeSpecialChars = ReadYesNo(Strings.Get("Prompt_Special"));
+        bool includeNumbers = ReadYesNo(Strings.Get("Prompt_Numbers"));
 
         int minLength = 1 + (includeCapitalLetters ? 1 : 0) + (includeSpecialChars ? 1 : 0) + (includeNumbers ? 1 : 0);
-        int length = ReadPositiveInt($"Enter the length of the password (minimum {minLength} for the selected options): ", minLength);
+        int length = ReadPositiveInt(Strings.Get("Prompt_Length", minLength), minLength);
 
         string password = GeneratePassword(length, includeCapitalLetters, includeSpecialChars, includeNumbers);
-        Console.WriteLine("Your password is: " + password);
+        Console.WriteLine(Strings.Get("Result_Password", password));
 
-        bool saveToDesktop = ReadYesNo("Do you want to save the password to the desktop? (Y/N): ");
+        bool saveToDesktop = ReadYesNo(Strings.Get("Prompt_Save"));
         if (saveToDesktop)
         {
-            Console.Write("Enter the directory name where you want to save the password file (leave empty for Desktop root): ");
+            Console.Write(Strings.Get("Prompt_Directory"));
             string? directoryName = Console.ReadLine();
 
             SavePasswordToFile(password, string.IsNullOrWhiteSpace(directoryName) ? null : directoryName.Trim());
         }
+    }
+
+    static void SelectLanguage()
+    {
+        Console.Write("Zvolte jazyk / Choose language: [1] Čeština (výchozí/default)  [2] English: ");
+        string? choice = Console.ReadLine()?.Trim();
+
+        CultureInfo culture = string.Equals(choice, "2", StringComparison.OrdinalIgnoreCase)
+            || string.Equals(choice, "en", StringComparison.OrdinalIgnoreCase)
+            ? new CultureInfo("en-US")
+            : new CultureInfo("cs-CZ");
+
+        CultureInfo.CurrentUICulture = culture;
     }
 
     static int ReadPositiveInt(string prompt, int minimum = 1)
@@ -39,7 +57,7 @@ class PasswordGenerator
                 return value;
             }
 
-            Console.WriteLine($"Please enter a whole number of at least {minimum}.");
+            Console.WriteLine(Strings.Get("Error_Length", minimum));
         }
     }
 
@@ -50,7 +68,8 @@ class PasswordGenerator
             Console.Write(prompt);
             string? input = Console.ReadLine()?.Trim();
 
-            if (string.Equals(input, "Y", StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(input, "Y", StringComparison.OrdinalIgnoreCase)
+                || string.Equals(input, "A", StringComparison.OrdinalIgnoreCase))
             {
                 return true;
             }
@@ -60,7 +79,7 @@ class PasswordGenerator
                 return false;
             }
 
-            Console.WriteLine("Please answer with Y or N.");
+            Console.WriteLine(Strings.Get("Error_YesNo"));
         }
     }
 
@@ -127,7 +146,7 @@ class PasswordGenerator
 
         if (!fullDirectoryPath.StartsWith(fullDesktopPath, StringComparison.OrdinalIgnoreCase))
         {
-            Console.WriteLine("Invalid directory name.");
+            Console.WriteLine(Strings.Get("Error_Directory"));
             return;
         }
 
@@ -140,11 +159,11 @@ class PasswordGenerator
 
             string filePath = Path.Combine(fullDirectoryPath, "password.txt");
             File.WriteAllText(filePath, password);
-            Console.WriteLine("Password saved to file: " + filePath);
+            Console.WriteLine(Strings.Get("Info_Saved", filePath));
         }
         catch (Exception ex)
         {
-            Console.WriteLine("Error saving password to file: " + ex.Message);
+            Console.WriteLine(Strings.Get("Error_Save", ex.Message));
         }
     }
 }
