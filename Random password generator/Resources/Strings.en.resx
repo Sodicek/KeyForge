@@ -100,6 +100,9 @@
   <data name="Status_InvalidDirectory" xml:space="preserve">
     <value>Invalid directory name.</value>
   </data>
+  <data name="Status_DesktopUnavailable" xml:space="preserve">
+    <value>Could not determine the desktop location. It's likely not configured on this system.</value>
+  </data>
   <data name="Label_ExcludeAmbiguous" xml:space="preserve">
     <value>Exclude ambiguous characters (0/O, 1/l/I)</value>
   </data>

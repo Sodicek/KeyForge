@@ -7,6 +7,12 @@ static class FileSaveService
     public static (bool Success, string Message) Save(string password, string? directoryName)
     {
         string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+
+        if (string.IsNullOrEmpty(desktopPath))
+        {
+            return (false, Strings.Get("Status_DesktopUnavailable"));
+        }
+
         string directoryPath = directoryName == null ? desktopPath : Path.Combine(desktopPath, directoryName);
 
         string fullDirectoryPath = Path.GetFullPath(directoryPath);
