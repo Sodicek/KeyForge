@@ -21,7 +21,8 @@ Na Linuxu/macOS je po rozbalení potřeba nastavit spustitelné právo: `chmod +
 
 ## Funkce
 
-- Volitelná délka hesla (posuvník)
+- Dva režimy generování: **náhodné znaky** i **heslová fráze** (styl diceware, např. `Ocean-Lynx-Pillar-Plate`)
+- Volitelná délka hesla / počet slov (posuvník)
 - Volitelné zahrnutí velkých písmen, čísel a speciálních znaků
 - Volitelné vyloučení matoucích znaků (0/O, 1/l/I)
 - Vygenerované heslo vždy obsahuje alespoň jeden znak z každé zvolené kategorie
@@ -30,6 +31,7 @@ Na Linuxu/macOS je po rozbalení potřeba nastavit spustitelné právo: `chmod +
 - Kopírování hesla do schránky jedním kliknutím, se automatickým smazáním schránky po 30 s
 - Volitelné uložení hesla do souboru `password.txt` na ploše (nebo do její podsložky)
 - Přepínání jazyka za běhu — čeština (výchozí) a angličtina
+- Kontrola nových verzí při startu (upozorní a odkáže na stažení, pokud je k dispozici novější release)
 
 ## Ovládání
 
@@ -54,6 +56,14 @@ dotnet build
 ```
 
 Aplikace je multiplatformní (Avalonia UI) a builduje se stejně na Windows, Linuxu i macOS.
+
+## Testy
+
+```bash
+dotnet test KeyForge.Tests
+```
+
+Unit testy pokrývají generování hesel a heslových frází (délka/počet slov, zastoupení kategorií znaků, vyloučení matoucích znaků, entropie) a ochranu proti path traversal při ukládání.
 
 ## Lokalizace
 

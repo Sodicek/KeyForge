@@ -27,3 +27,6 @@ jobs:
 
       - name: Build
         run: dotnet build --no-restore --configuration Release
+
+      - name: Test
+        run: dotnet test KeyForge.Tests --no-restore --configuration Release

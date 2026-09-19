@@ -124,4 +124,22 @@
   <data name="Strength_VeryStrong" xml:space="preserve">
     <value>very strong</value>
   </data>
+  <data name="Label_ModeCharacters" xml:space="preserve">
+    <value>Characters</value>
+  </data>
+  <data name="Label_ModePassphrase" xml:space="preserve">
+    <value>Passphrase</value>
+  </data>
+  <data name="Label_WordCount" xml:space="preserve">
+    <value>Word count</value>
+  </data>
+  <data name="Label_Capitalize" xml:space="preserve">
+    <value>Capitalize each word</value>
+  </data>
+  <data name="Label_AppendNumber" xml:space="preserve">
+    <value>Append a number</value>
+  </data>
+  <data name="Status_UpdateAvailable" xml:space="preserve">
+    <value>A new version ({0}) is available. Click to download.</value>
+  </data>
 </root>

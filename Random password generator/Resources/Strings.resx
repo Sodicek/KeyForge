@@ -124,4 +124,22 @@
   <data name="Strength_VeryStrong" xml:space="preserve">
     <value>velmi silné</value>
   </data>
+  <data name="Label_ModeCharacters" xml:space="preserve">
+    <value>Znaky</value>
+  </data>
+  <data name="Label_ModePassphrase" xml:space="preserve">
+    <value>Heslová fráze</value>
+  </data>
+  <data name="Label_WordCount" xml:space="preserve">
+    <value>Počet slov</value>
+  </data>
+  <data name="Label_Capitalize" xml:space="preserve">
+    <value>Velké první písmeno u slov</value>
+  </data>
+  <data name="Label_AppendNumber" xml:space="preserve">
+    <value>Přidat číslo na konec</value>
+  </data>
+  <data name="Status_UpdateAvailable" xml:space="preserve">
+    <value>K dispozici je nová verze {0}. Klikni pro stažení.</value>
+  </data>
 </root>

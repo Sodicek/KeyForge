@@ -1,4 +1,5 @@
 using System.Globalization;
+using System.Reflection;
 using Avalonia.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -37,6 +38,18 @@ public partial class MainWindowViewModel : ObservableObject
     private double length = 16;
 
     [ObservableProperty]
+    private bool usePassphraseMode;
+
+    [ObservableProperty]
+    private double passphraseWordCount = 5;
+
+    [ObservableProperty]
+    private bool passphraseCapitalize = true;
+
+    [ObservableProperty]
+    private bool passphraseAppendNumber;
+
+    [ObservableProperty]
     private string generatedPassword = string.Empty;
 
     [ObservableProperty]
@@ -62,9 +75,16 @@ public partial class MainWindowViewModel : ObservableObject
     [NotifyPropertyChangedFor(nameof(StrengthColor))]
     private PasswordStrength strength;
 
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(UpdateMessage))]
+    [NotifyPropertyChangedFor(nameof(IsUpdateAvailable))]
+    private string? availableUpdateVersion;
+
     public double MinLength => PasswordService.MinLength(IncludeCapitals, IncludeSpecial, IncludeNumbers);
 
     public double StrengthPercent => Math.Clamp(EntropyBits / 1.28, 0, 100);
+
+    public bool IsUpdateAvailable => AvailableUpdateVersion is not null;
 
     public string Title => Strings.Get("App_Title");
     public string CapitalsLabel => Strings.Get("Label_Capitals");
@@ -77,8 +97,17 @@ public partial class MainWindowViewModel : ObservableObject
     public string SaveLabel => Strings.Get("Button_Save");
     public string SaveToDesktopLabel => Strings.Get("Label_SaveToDesktop");
     public string DirectoryPlaceholder => Strings.Get("Placeholder_Directory");
+    public string ModeCharactersLabel => Strings.Get("Label_ModeCharacters");
+    public string ModePassphraseLabel => Strings.Get("Label_ModePassphrase");
+    public string WordCountLabel => Strings.Get("Label_WordCount");
+    public string CapitalizeLabel => Strings.Get("Label_Capitalize");
+    public string AppendNumberLabel => Strings.Get("Label_AppendNumber");
 
     public string StrengthText => Strings.Get("Label_Strength", Strings.Get(StrengthResourceKey(Strength)), EntropyBits);
+
+    public string? UpdateMessage => AvailableUpdateVersion is null
+        ? null
+        : Strings.Get("Status_UpdateAvailable", AvailableUpdateVersion);
 
     public IBrush StrengthColor => Strength switch
     {
@@ -93,6 +122,7 @@ public partial class MainWindowViewModel : ObservableObject
     {
         Strings.Culture = new CultureInfo("cs-CZ");
         Generate();
+        _ = CheckForUpdatesAsync();
     }
 
     partial void OnLanguageIndexChanged(int value)
@@ -112,18 +142,27 @@ public partial class MainWindowViewModel : ObservableObject
     [RelayCommand]
     private void Generate()
     {
-        if (Length < MinLength)
+        if (UsePassphraseMode)
         {
-            Length = MinLength;
+            int words = (int)PassphraseWordCount;
+            GeneratedPassword = PassphraseService.Generate(words, PassphraseCapitalize, PassphraseAppendNumber);
+            EntropyBits = PassphraseService.EntropyBits(words, PassphraseAppendNumber);
+        }
+        else
+        {
+            if (Length < MinLength)
+            {
+                Length = MinLength;
+            }
+
+            int length = (int)Length;
+            GeneratedPassword = PasswordService.Generate(length, IncludeCapitals, IncludeSpecial, IncludeNumbers, ExcludeAmbiguous);
+
+            int charsetSize = PasswordService.CharsetSize(IncludeCapitals, IncludeSpecial, IncludeNumbers, ExcludeAmbiguous);
+            EntropyBits = length * Math.Log2(charsetSize);
         }
 
-        int length = (int)Length;
-        GeneratedPassword = PasswordService.Generate(length, IncludeCapitals, IncludeSpecial, IncludeNumbers, ExcludeAmbiguous);
-
-        int charsetSize = PasswordService.CharsetSize(IncludeCapitals, IncludeSpecial, IncludeNumbers, ExcludeAmbiguous);
-        EntropyBits = length * Math.Log2(charsetSize);
         Strength = ClassifyStrength(EntropyBits);
-
         StatusMessage = string.Empty;
     }
 
@@ -140,9 +179,21 @@ public partial class MainWindowViewModel : ObservableObject
         StatusMessage = message;
     }
 
+    [RelayCommand]
+    private void OpenUpdatePage()
+    {
+        UrlOpener.Open(UpdateCheckService.ReleasesPageUrl);
+    }
+
     public void NotifyPasswordCopied()
     {
         StatusMessage = Strings.Get("Status_CopiedWithClear");
+    }
+
+    private async Task CheckForUpdatesAsync()
+    {
+        Version current = Assembly.GetExecutingAssembly().GetName().Version ?? new Version(0, 0, 0);
+        AvailableUpdateVersion = await UpdateCheckService.GetNewerVersionAsync(current);
     }
 
     private static PasswordStrength ClassifyStrength(double bits) => bits switch
@@ -177,5 +228,11 @@ public partial class MainWindowViewModel : ObservableObject
         OnPropertyChanged(nameof(SaveToDesktopLabel));
         OnPropertyChanged(nameof(DirectoryPlaceholder));
         OnPropertyChanged(nameof(StrengthText));
+        OnPropertyChanged(nameof(ModeCharactersLabel));
+        OnPropertyChanged(nameof(ModePassphraseLabel));
+        OnPropertyChanged(nameof(WordCountLabel));
+        OnPropertyChanged(nameof(CapitalizeLabel));
+        OnPropertyChanged(nameof(AppendNumberLabel));
+        OnPropertyChanged(nameof(UpdateMessage));
     }
 }
