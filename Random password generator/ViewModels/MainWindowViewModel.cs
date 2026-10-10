@@ -121,8 +121,42 @@ public partial class MainWindowViewModel : ObservableObject
     public MainWindowViewModel()
     {
         Strings.Culture = new CultureInfo("cs-CZ");
+        ApplySettings(SettingsService.Load());
         Generate();
         _ = CheckForUpdatesAsync();
+    }
+
+    public void SaveSettings()
+    {
+        SettingsService.Save(new AppSettings
+        {
+            LanguageIndex = LanguageIndex,
+            UsePassphraseMode = UsePassphraseMode,
+            IncludeCapitals = IncludeCapitals,
+            IncludeSpecial = IncludeSpecial,
+            IncludeNumbers = IncludeNumbers,
+            ExcludeAmbiguous = ExcludeAmbiguous,
+            Length = Length,
+            PassphraseWordCount = PassphraseWordCount,
+            PassphraseCapitalize = PassphraseCapitalize,
+            PassphraseAppendNumber = PassphraseAppendNumber,
+            SaveFolderName = SaveFolderName,
+        });
+    }
+
+    private void ApplySettings(AppSettings settings)
+    {
+        LanguageIndex = settings.LanguageIndex;
+        UsePassphraseMode = settings.UsePassphraseMode;
+        IncludeCapitals = settings.IncludeCapitals;
+        IncludeSpecial = settings.IncludeSpecial;
+        IncludeNumbers = settings.IncludeNumbers;
+        ExcludeAmbiguous = settings.ExcludeAmbiguous;
+        Length = settings.Length;
+        PassphraseWordCount = settings.PassphraseWordCount;
+        PassphraseCapitalize = settings.PassphraseCapitalize;
+        PassphraseAppendNumber = settings.PassphraseAppendNumber;
+        SaveFolderName = settings.SaveFolderName;
     }
 
     partial void OnLanguageIndexChanged(int value)

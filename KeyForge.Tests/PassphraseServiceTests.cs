@@ -66,8 +66,26 @@ public class PassphraseServiceTests
     }
 
     [Fact]
-    public void WordCount_ReportsAMeaningfulWordListSize()
+    public void WordList_IsTheFullEffLargeList_MinusHyphenatedWords()
     {
-        Assert.True(PassphraseService.WordCount > 100);
+        Assert.Equal(7772, PassphraseService.WordCount);
+    }
+
+    [Fact]
+    public void WordList_ContainsOnlyUniqueLowercaseWordsWithoutSeparator()
+    {
+        Assert.Equal(WordList.Words.Length, WordList.Words.Distinct().Count());
+        Assert.All(WordList.Words, word =>
+        {
+            Assert.DoesNotContain('-', word);
+            Assert.Equal(word.ToLowerInvariant(), word);
+            Assert.NotEmpty(word);
+        });
+    }
+
+    [Fact]
+    public void EntropyBits_PerWord_MatchesTheListSize()
+    {
+        Assert.Equal(Math.Log2(7772), PassphraseService.EntropyBits(1, appendNumber: false), precision: 6);
     }
 }

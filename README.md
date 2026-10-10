@@ -21,7 +21,7 @@ Na Linuxu/macOS je po rozbalení potřeba nastavit spustitelné právo: `chmod +
 
 ## Funkce
 
-- Dva režimy generování: **náhodné znaky** i **heslová fráze** (styl diceware, např. `Ocean-Lynx-Pillar-Plate`)
+- Dva režimy generování: **náhodné znaky** i **heslová fráze** (styl diceware, např. `Gusty-Overarch-Zoologist-Despair-Vendetta`) ze seznamu 7 772 slov (~12,9 bitu na slovo)
 - Volitelná délka hesla / počet slov (posuvník)
 - Volitelné zahrnutí velkých písmen, čísel a speciálních znaků
 - Volitelné vyloučení matoucích znaků (0/O, 1/l/I)
@@ -31,6 +31,7 @@ Na Linuxu/macOS je po rozbalení potřeba nastavit spustitelné právo: `chmod +
 - Kopírování hesla do schránky jedním kliknutím, se automatickým smazáním schránky po 30 s
 - Volitelné uložení hesla do souboru `password.txt` na ploše (nebo do její podsložky)
 - Přepínání jazyka za běhu — čeština (výchozí) a angličtina
+- Pamatuje si poslední nastavení (jazyk, režim, délku, volby) — ukládá se jen konfigurace, nikdy samotné heslo
 - Kontrola nových verzí při startu (upozorní a odkáže na stažení, pokud je k dispozici novější release)
 
 ## Ovládání
@@ -63,8 +64,12 @@ Aplikace je multiplatformní (Avalonia UI) a builduje se stejně na Windows, Lin
 dotnet test KeyForge.Tests
 ```
 
-Unit testy pokrývají generování hesel a heslových frází (délka/počet slov, zastoupení kategorií znaků, vyloučení matoucích znaků, entropie) a ochranu proti path traversal při ukládání.
+Unit testy pokrývají generování hesel a heslových frází (délka/počet slov, zastoupení kategorií znaků, vyloučení matoucích znaků, entropie, seznam slov), ukládání/načítání nastavení a ochranu proti path traversal při ukládání.
 
 ## Lokalizace
 
 Texty aplikace jsou v `Resources/Strings.resx` (čeština, výchozí) a `Resources/Strings.en.resx` (angličtina). Nový jazyk lze přidat vytvořením dalšího `Strings.<kód_jazyka>.resx` se stejnými klíči a přidáním položky do přepínače jazyka v `Views/MainWindow.axaml`.
+
+## Licence a atribuce
+
+Seznam slov pro heslové fráze je [EFF Large Wordlist](https://www.eff.org/deeplinks/2016/07/new-wordlists-random-passphrases) od Electronic Frontier Foundation, licencovaný pod [CC BY 3.0 US](https://creativecommons.org/licenses/by/3.0/us/). Z původních 7 776 slov jsou vynechána čtyři slova s pomlčkou (`drop-down`, `felt-tip`, `t-shirt`, `yo-yo`), protože pomlčka slouží jako oddělovač.

@@ -14,6 +14,14 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+
+        Closing += (_, _) =>
+        {
+            if (DataContext is MainWindowViewModel vm)
+            {
+                vm.SaveSettings();
+            }
+        };
     }
 
     private async void OnCopyClick(object? sender, RoutedEventArgs e)
