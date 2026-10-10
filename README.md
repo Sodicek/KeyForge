@@ -14,10 +14,16 @@ Nejnovější verzi ke stažení najdeš na stránce [Releases](https://github.c
 |---|---|
 | Windows (x64) | [KeyForge-win-x64.zip](https://github.com/Sodicek/KeyForge/releases/latest/download/KeyForge-win-x64.zip) |
 | Linux (x64) | [KeyForge-linux-x64.tar.gz](https://github.com/Sodicek/KeyForge/releases/latest/download/KeyForge-linux-x64.tar.gz) |
-| macOS (Intel) | [KeyForge-osx-x64.tar.gz](https://github.com/Sodicek/KeyForge/releases/latest/download/KeyForge-osx-x64.tar.gz) |
-| macOS (Apple Silicon) | [KeyForge-osx-arm64.tar.gz](https://github.com/Sodicek/KeyForge/releases/latest/download/KeyForge-osx-arm64.tar.gz) |
+| macOS (Intel) | [KeyForge-osx-x64.zip](https://github.com/Sodicek/KeyForge/releases/latest/download/KeyForge-osx-x64.zip) |
+| macOS (Apple Silicon) | [KeyForge-osx-arm64.zip](https://github.com/Sodicek/KeyForge/releases/latest/download/KeyForge-osx-arm64.zip) |
 
-Na Linuxu/macOS je po rozbalení potřeba nastavit spustitelné právo: `chmod +x KeyForge`.
+**Linux:** po rozbalení je potřeba nastavit spustitelné právo: `chmod +x KeyForge`.
+
+**macOS:** balíček obsahuje `KeyForge.app` — přesuň ji do složky Aplikace. Appka není podepsaná placeným vývojářským certifikátem, takže ji macOS při prvním spuštění zablokuje. Otevři ji přes pravé tlačítko → **Otevřít** (a potvrď), nebo jednou spusť v Terminálu:
+
+```bash
+xattr -dr com.apple.quarantine /Applications/KeyForge.app
+```
 
 ## Funkce
 
@@ -36,7 +42,7 @@ Na Linuxu/macOS je po rozbalení potřeba nastavit spustitelné právo: `chmod +
 
 ## Ovládání
 
-Zaškrtni požadované kategorie znaků, nastav délku posuvníkem a klikni na **Generovat**. Heslo lze zkopírovat do schránky nebo uložit do textového souboru na ploše — ten je čistý text, takže po použití soubor smaž, ať v něm heslo neleží zbytečně dlouho.
+Zaškrtni požadované kategorie znaků, nastav délku posuvníkem a klikni na **Generovat** (nebo stiskni **Enter**). Heslo lze zkopírovat do schránky (tlačítkem nebo **Ctrl+C**, na macOS **Cmd+C**) nebo uložit do textového souboru na ploše — ten je čistý text, takže po použití soubor smaž, ať v něm heslo neleží zbytečně dlouho.
 
 ## Spuštění ze zdrojového kódu
 
